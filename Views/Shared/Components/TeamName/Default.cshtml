@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Team>
+@{ 
+    string teamName = Context.Request.Query["teamname"].ToString();
+}
+
+<h4>Teams</h4>
+<hr />
+
+<a class="btn btn-danger mb-2" asp-action="Index" asp-controller="Home" asp-route-teamid="">
+<strong>Home</strong></a>
+
+
+@foreach (var x in Model)
+{
+    <a class="btn mb-1 @(x.TeamName == ViewBag.ActiveTeam ? "btn-danger text-white" : "btn-outline-danger")"
+       asp-action="Index"
+       asp-controller="Home"
+       asp-route-teamid="@x.TeamId"
+       asp-route-teamname="@x.TeamName">
+    <strong>@x.TeamName</strong></a><br />
+}

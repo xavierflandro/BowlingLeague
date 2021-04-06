@@ -1,0 +1,54 @@
+﻿@model IndexViewModel
+
+
+<h4>@( Model.TeamName != null ? Model.TeamName + " Bowlers" : "All Bowlers")</h4>
+<hr />
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr class="text-danger">
+            <th>First Name</th>
+            <th>Middle<br />Initial</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>ZipCode</th>
+            <th>Phone Number</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @if (Model.Bowlers.Count() > 0)
+        {
+            @foreach (var b in Model.Bowlers)
+            {
+                <tr>
+                    <td>@b.BowlerFirstName</td>
+                    <td>@(@b.BowlerMiddleInit != null ? @b.BowlerMiddleInit + "." : "n/a")</td>
+                    <td>@b.BowlerLastName</td>
+                    <td>@b.BowlerAddress</td>
+                    <td>@b.BowlerCity</td>
+                    <td>@b.BowlerState</td>
+                    <td>@b.BowlerZip</td>
+                    <td>@b.BowlerPhoneNumber</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr class="mx-auto text-center m-5">
+                <td colspan="8">There are no Bowlers on this team.</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<div  class="mx-auto"
+ page-info="@Model.PagingInfo" page-info-teamname="@Model.TeamName">
+
+</div>
+
